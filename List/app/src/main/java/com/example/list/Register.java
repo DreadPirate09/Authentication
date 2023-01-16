@@ -38,19 +38,24 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String nameString = email.getEditableText().toString();
                 String passwordString = password.getEditableText().toString();
-                String res = doPostRequestNamePassword(nameString,passwordString);
-                openDialog("Cont creat cu success");
-                JSONObject obj = null;
-                String textRecived = null;
-                try {
-                    obj = new JSONObject(res);
-                    textRecived =(String) obj.get("raspuns");
-                    Login.userName = nameString;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-                System.out.println(res);
+                if (new MessageDialog("need for match").isMatches(passwordString)) {
+                    String res = doPostRequestNamePassword(nameString,passwordString);
+                    JSONObject obj = null;
+                    String textRecived = null;
+                    try {
+                        obj = new JSONObject(res);
+                        textRecived =(String) obj.get("raspuns");
+                        Login.userName = nameString;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    openDialog(res);
+                    System.out.println(res);
+
+                } else {
+                    openDialog("The password must starts with a capital letter and contain at least one special character and have a minimum length of 5 characters");
+                }
             }
         });
     }
@@ -61,6 +66,8 @@ public class Register extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         MediaType JSON = MediaType.parse("application/json;charset=utf-8");
         JSONObject actualData = new JSONObject();
+
+        password = new MD5().getMd5(password);
 
         try {
             actualData.put("email",email);

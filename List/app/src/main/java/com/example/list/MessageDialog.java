@@ -28,4 +28,8 @@ public class MessageDialog extends AppCompatDialogFragment {
                 });
         return builder.create();
     }
+
+    public boolean isMatches(String passwordString) {
+        return passwordString.matches("^[A-Z].{5,}.*[^A-Za-z0-9]");
+    }
 }

@@ -1,5 +1,5 @@
 package com.example.list;
 
 public class GlobalVars {
-    public static String url = "https://93f7-2a02-2f09-3900-7000-3819-f126-148-bab9.eu.ngrok.io";
+    public static String url = "https://aefc-2a04-241b-8202-e300-3012-7c23-9788-96fd.ngrok.io";
 }

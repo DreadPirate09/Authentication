@@ -90,6 +90,8 @@ public class Login extends AppCompatActivity {
         MediaType JSON = MediaType.parse("application/json;charset=utf-8");
         JSONObject actualData = new JSONObject();
 
+        password = new MD5().getMd5(password);
+
         try {
             actualData.put("name",name);
             actualData.put("password",password);
