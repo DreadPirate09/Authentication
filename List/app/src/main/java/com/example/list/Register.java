@@ -78,6 +78,8 @@ public class Register extends AppCompatActivity {
             Log.d("OKHTTP3","JSON excetion");
         }
         RequestBody body = RequestBody.create(JSON,actualData.toString());
+        System.out.println(url.toString());
+        System.out.println(body);
         Request newReq = new Request.Builder()
                 .url(url)
                 .post(body)

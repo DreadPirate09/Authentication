@@ -100,10 +100,13 @@ public class Login extends AppCompatActivity {
             Log.d("OKHTTP3","JSON excetion");
         }
         RequestBody body = RequestBody.create(JSON,actualData.toString());
+        System.out.println(url.toString());
+        System.out.println(body.toString());
         Request newReq = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
+        System.out.println(newReq.toString());
         try {
             Response response = client.newCall(newReq).execute();
             Log.d("OKHTTP3", "Request efectuat");
